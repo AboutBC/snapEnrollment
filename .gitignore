@@ -1,0 +1,22 @@
+# Python cache and virtualenv
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env/
+.venv/
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore pickles and models binaries
+*.pkl
+*.joblib
+
+# Ignore all contents of data and models folders
+data/*
+models/*
+
+# But keep the folder structure
+!data/.gitkeep
+!models/.gitkeep
