@@ -33,12 +33,13 @@ def get_census_data(years = [2021,2022], dataset = "acs/acs5", variables:list = 
     #Go through each year in years list and return a single stacked DataFrame
     i_loop = 0
     all_data = []
+    session = requests.Session()
     for year in years:
         url = f"{CENSUS_API_BASE}/{year}/{dataset}?get={var_str}&for={for_clause}&in={in_clause}&key={API_KEY}" #creating URL using all variables thus far.
         logging.info(f"Requesting data for year {year} from Census API...")
         logging.debug(f"Request URL: {url}")
         start_time = time.time()
-        response = requests.get(url)
+        response = session.get(url)
         elapsed = time.time() - start_time
         try:
             response.raise_for_status()

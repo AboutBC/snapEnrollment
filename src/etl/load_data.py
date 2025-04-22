@@ -1,12 +1,15 @@
 from src.etl.get_census_data import get_census_data
+from src.utils.logger import setup_logger
+
+logger = setup_logger()
+logger.info("Starting Data Pipeline...")
 
 def run_full_pipeline():
     #Define years, variables to fetch from each API
-    years = list(range(2012, 2023))
+    years = list(range(2012, 2024))
     acs_variables = [
         "GEO_ID",  # FIPS code (state + county)
         "NAME",  # County Name
-        "STATE_NAME",  # State Name
         "B01003_001E",  # Total population
         "B01001_002E",  # Total male population
         "B01001_026E",  # Total female population
@@ -50,14 +53,10 @@ def run_full_pipeline():
         "B02001_007E",  # Some other race alone
         "B02001_008E",  # Two or more races
         "B25070_001E",  # Median home value
-        "B25064_001E",  # Total housing units (occupied, owner-occupied, renter-occupied)
-        "B25003_003E",  # Total owner-occupied housing units
-        "B25003_004E",  # Total renter-occupied housing units
     ]
     acs_variables_dict = {
         "GEO_ID": "fips_code",  # Full FIPS code (state + county)
         "NAME": "county_name",  # County Name
-        "STATE_NAME": "state_name",  # State Name
         "B01003_001E": "total_population",  # Total population
         "B01001_002E": "total_male_population",  # Total male population
         "B01001_026E": "total_female_population",  # Total female population
@@ -106,9 +105,6 @@ def run_full_pipeline():
         "B02001_007E": "some_other_race_population",  # Some other race alone
         "B02001_008E": "two_or_more_races_population",  # Two or more races
         "B25070_001E": "median_home_value",  # Median home value
-        "B25064_001E": "total_housing_units",  # Total housing units (occupied, owner-occupied, renter-occupied)
-        "B25003_003E": "owner_occupied_housing_units",  # Total owner-occupied housing units
-        "B25003_004E": "renter_occupied_housing_units",  # Total renter-occupied housing units
     }
 
     #Load

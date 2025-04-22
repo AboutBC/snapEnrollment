@@ -9,14 +9,17 @@ __pycache__/
 # Jupyter notebook checkpoints
 .ipynb_checkpoints/
 
-# Ignore pickles and models binaries
+# Ignore pickles models binaries
 *.pkl
 *.joblib
 
 # Ignore all contents of data and models folders
 data/*
 models/*
+logs/*
+
 
 # But keep the folder structure
 !data/.gitkeep
 !models/.gitkeep
+!logs/.gitkeep
